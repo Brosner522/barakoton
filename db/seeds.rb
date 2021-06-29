@@ -1,7 +1,35 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "Destroying seeds!!"
+User.destroy_all
+Session.destroy_all
+Workout.destroy_all
+
+
+puts "Seeding people"
+u1 = User.create(name: "Barak Rosner", email: "rosnerbb@gmail.com", age: 25, weight: 230, password: "Rosner18")
+u2 = User.create(name: "Hannah Hasten", email: "hannahhasten@gmail.com", age: 24, weight: 120, password: "Hasten18")
+u3 = User.create(name: "Rae", email: "rae@gmail.com", age: 18, weight: 124, password: "Rae18")
+u4 = User.create(name: "Sam Jonas", email: "samjonas@gmail.com", age: 27, weight: 130, password: "Sam18")
+u5 = User.create(name: "Jackie Lyn", email: "jackielyn@gmail.com", age: 21, weight: 75, password: "Jackie18")
+
+
+puts "Seeding Workouts"
+w1 = Workout.create(video: "https://www.youtube.com/embed/UBMk30rjy0o", time: "20 minutes", difficulty: 8, workout_type: "Full body", coach: "Pamela Reif")
+w2 = Workout.create(video: "https://www.youtube.com/embed/gC_L9qAHVJ8", time: "30 minutes", difficulty: 3, workout_type: "Fat burning", coach: "Body Project")
+w3 = Workout.create(video: "https://www.youtube.com/embed/3eay48JwTPI", time: "7 minutes", difficulty: 4, workout_type: "Lazy girl workout", coach: "Vicky Justiz")
+w4 = Workout.create(video: "https://www.youtube.com/embed/ml6cT4AZdqI", time: "30 minutes", difficulty: 7, workout_type: "HIIT cardio", coach: "Lita Lewis")
+w5 = Workout.create(video: "https://www.youtube.com/embed/tiC0zylTB0w", time: "10 minutes", difficulty: 5, workout_type: "Kettlebell workout", coach: "Body Fit By Amy")
+w6 = Workout.create(video: "https://www.youtube.com/embed/hnrkkvx4d50", time: "30 minutes", difficulty: 2, workout_type: "Yoga flow", coach: "Jessica Richburg")
+w7 = Workout.create(video: "https://www.youtube.com/embed/3p8EBPVZ2Iw", time: "12 minutes", difficulty: 6, workout_type: "6 Pack abs", coach: "Thenx")
+w8 = Workout.create(video: "https://www.youtube.com/embed/L_xrDAtykMI", time: "15 minutes", difficulty: 1, workout_type: "Strech routine", coach: "Tom Merrick")
+w9 = Workout.create(video: "https://www.youtube.com/embed/U0bhE67HuDY", time: "15 minutes", difficulty: 4, workout_type: "Weight training", coach: "Hasfit")
+w10 = Workout.create(video: "https://www.youtube.com/embed/JeYP5sySvJs", time: "45 minutes", difficulty: 9, workout_type: "Cario and toning", coach: "Kit Rich")
+
+
+puts "Seeding Sessions"
+Session.create(notes: ["I’ve done this workout 3-4 times now and it never fails to kick my ass! Great workout. I hope to see more workouts soon!"], user_id: u1.id, workout_id: w9.id)
+Session.create(notes: ["I loved every second of it!!!! I was sweating like crazy, my legs are on fire, but I love this feeling!"], user_id: u3.id,workout_id: w3.id)
+Session.create(notes: ["Doing this workout everyday since lockdown as it’s the only one my kids will do with me."], user_id: u5.id,workout_id: w5.id)
+Session.create(notes: ["She makes working out even on Youtube fun! Love her!"], user_id: u1.id,workout_id: w1.id)
+Session.create(notes: ["I love these 45 minute workouts!!"], user_id: u2.id,workout_id: w10.id)
+
+puts "✅ Done seeding!"
