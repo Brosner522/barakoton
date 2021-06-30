@@ -4,12 +4,13 @@ Session.destroy_all
 Workout.destroy_all
 
 
-puts "Seeding people"
+puts "Seeding users"
 u1 = User.create(name: "Barak Rosner", email: "rosnerbb@gmail.com", age: 25, weight: 230, password: "Rosner18")
 u2 = User.create(name: "Hannah Hasten", email: "hannahhasten@gmail.com", age: 24, weight: 120, password: "Hasten18")
 u3 = User.create(name: "Rae", email: "rae@gmail.com", age: 18, weight: 124, password: "Rae18")
 u4 = User.create(name: "Sam Jonas", email: "samjonas@gmail.com", age: 27, weight: 130, password: "Sam18")
 u5 = User.create(name: "Jackie Lyn", email: "jackielyn@gmail.com", age: 21, weight: 75, password: "Jackie18")
+u6 = User.create(name: "Mollz fillet", email: "mollz@gmail.com", age: 19, weight: 20, password: "Mollz18")
 
 
 puts "Seeding Workouts"
