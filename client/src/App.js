@@ -1,48 +1,72 @@
 import './App.css';
 import { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Login from './components/Login';
 import WorkoutContainer from './components/WorkoutContainer.js';
 import HomePage from './components/HomePage';
+import Navbar from './components/Navbar';
 
-export default class App extends Component {
+class App extends Component {
   state = {
-    users: [],
-    loggedinUser: [],
-    workouts: []
+    user: {}
   }
 
   handleLogInUser = (loginUserObj) => {
     this.setState({
-      loggedinUser: loginUserObj
+      user: loginUserObj
     });
   };
 
-  handleAddNewUser = (newUser) => {
+  handleLogout = () => {
+    console.log('logging out...')
+    this.props.history.push('/barakoton')
     this.setState({
-      users: [...this.state.users, newUser]
+      user: {}
     })
   }
 
   componentDidMount() {
-    fetch("http://localhost:4000/users")
+    fetch("http://localhost:4000/me")
       .then((res) => res.json())
-      .then((users) => {
-        fetch("http://localhost:4000/workouts")
-          .then((res) => res.json())
-          .then((workouts) =>
-            this.setState({
-              users: users,
-              workouts: workouts
-            })
-          );
-      });
+      .then((user) => {
+        if (user === null) {
+          this.props.history.push('/barakoton')
+      } else {
+        console.log(this.props)
+        this.props.history.push("/homepage")
+        this.setState({
+          user: user
+        })
+      }
+    });
+  }
+
+  editUser = (editedUser) => {
+    const reqMethod = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify(editedUser)
+    }
+
+    fetch(`http://localhost:4000/users/${this.state.user.id}`, reqMethod)
+      .then ((res) => res.json())
+      .then((returnUser) => {
+        if (returnUser.errors) {
+          alert(returnUser.errors.join("/n"))
+        } else {
+        this.setState({
+          user: editedUser
+        })
+      }
+    })
   }
 
   render() {
     return (
-    <Router>
+    
       <div className="App">
+        <Navbar 
+        handleLogout={this.handleLogout}/>
         <Switch>
         <Route
             exact
@@ -50,9 +74,8 @@ export default class App extends Component {
             component={(props) => (
               <Login
               {...props}
-              users={this.state.users}
+              user={this.state.user}
               handleLogInUser={this.handleLogInUser}
-              handleAddNewUser={this.handleAddNewUser}
                 />
             )}
           />
@@ -62,6 +85,8 @@ export default class App extends Component {
           component={(props) => (
             <HomePage 
             {...props}
+            user={this.state.user}
+            editUser={this.editUser}
             />
           )} 
           />
@@ -71,14 +96,14 @@ export default class App extends Component {
             component={(props) => (
               <WorkoutContainer
                 {...props}
-                userLogIn={this.state.userLogIn}
-                workouts={this.state.workouts} 
               />
             )}
           />
         </Switch>
       </div>
-    </Router>
     );
   }
 }
+
+
+export default withRouter(App)

@@ -23,7 +23,7 @@ w6 = Workout.create(video: "https://www.youtube.com/embed/hnrkkvx4d50", time: "3
 w7 = Workout.create(video: "https://www.youtube.com/embed/3p8EBPVZ2Iw", time: "12 minutes", difficulty: 6, workout_type: "6 Pack abs", coach: "Thenx")
 w8 = Workout.create(video: "https://www.youtube.com/embed/L_xrDAtykMI", time: "15 minutes", difficulty: 1, workout_type: "Strech routine", coach: "Tom Merrick")
 w9 = Workout.create(video: "https://www.youtube.com/embed/U0bhE67HuDY", time: "15 minutes", difficulty: 4, workout_type: "Weight training", coach: "Hasfit")
-w10 = Workout.create(video: "https://www.youtube.com/embed/JeYP5sySvJs", time: "45 minutes", difficulty: 9, workout_type: "Cario and toning", coach: "Kit Rich")
+w10 = Workout.create(video: "https://www.youtube.com/embed/JeYP5sySvJs", time: "45 minutes", difficulty: 9, workout_type: "Carido and toning", coach: "Kit Rich")
 
 
 puts "Seeding Sessions"
@@ -34,3 +34,4 @@ Session.create(notes: ["She makes working out even on Youtube fun! Love her!"], 
 Session.create(notes: ["I love these 45 minute workouts!!"], user_id: u2.id,workout_id: w10.id)
 
 puts "✅ Done seeding!"
+

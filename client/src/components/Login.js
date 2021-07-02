@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Input, Button } from 'semantic-ui-react';
 
 export default class Login extends Component {
     state = {
@@ -61,10 +62,10 @@ export default class Login extends Component {
           <label>
             Log In{" "}
             <p className="login-input">
-              <input type="text" placeholder="Enter your email" email="email" />
+              <Input type="text" placeholder="Enter your email" email="email" />
             </p>{" "}
             <p className="login-input">
-              <input
+              <Input
                 // type="password"
                 type="text"
                 placeholder="Enter your password"
@@ -73,7 +74,7 @@ export default class Login extends Component {
             </p>{" "}
           </label>{" "}
           <p className="login-input">
-            <input className="login-btn" type="submit" value="Log In" />
+            <Button primary className="login-btn" type="submit" value="Log In" >Log in</Button>
           </p>{" "}
         </form>{" "}
 
@@ -81,7 +82,7 @@ export default class Login extends Component {
           <label>
             Sign up{" "}
             <p className="login-input">
-              <input
+              <Input
                 type="text"
                 placeholder="Enter your name"
                 name="name"
@@ -94,7 +95,7 @@ export default class Login extends Component {
               />{" "}
             </p>{" "}
             <p className="login-input">
-              <input
+              <Input
                 type="text"
                 placeholder="Enter your email"
                 email="email"
@@ -107,7 +108,7 @@ export default class Login extends Component {
               />{" "}
             </p>{" "}
             <p className="login-input">
-              <input
+              <Input
                 type="number"
                 placeholder="Enter your age"
                 age="age"
@@ -120,7 +121,7 @@ export default class Login extends Component {
               />{" "}
             </p>{" "}
             <p className="login-input">
-              <input
+              <Input
                 type="number"
                 placeholder="Enter your weight"
                 weight="weight"
@@ -133,7 +134,7 @@ export default class Login extends Component {
               />{" "}
             </p>{" "}
             <p className="login-input">
-              <input
+              <Input
                 // type="password"
                 type="text"
                 placeholder="Choose a password"
@@ -148,7 +149,7 @@ export default class Login extends Component {
             </p>{" "}
           </label>{" "}
           <p className="login-input">
-            <input className="signup-btn" type="submit" value="Sign Up" />
+            <Button primary className="signup-btn" type="submit" value="Sign Up" >Submit</Button>
           </p>{" "}
         </form>{" "}
       </div>
