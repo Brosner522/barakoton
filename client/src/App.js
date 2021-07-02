@@ -5,6 +5,8 @@ import Login from './components/Login';
 import WorkoutContainer from './components/WorkoutContainer.js';
 import HomePage from './components/HomePage';
 import Navbar from './components/Navbar';
+import Bookmarked from './components/Bookmarked';
+import SessionHistroy from './components/SessionHistory';
 
 class App extends Component {
   state = {
@@ -26,13 +28,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:4000/me")
+    fetch("http://localhost:3000/me")
       .then((res) => res.json())
       .then((user) => {
         if (user === null) {
           this.props.history.push('/barakoton')
       } else {
-        console.log(this.props)
         this.props.history.push("/homepage")
         this.setState({
           user: user
@@ -48,7 +49,7 @@ class App extends Component {
       body: JSON.stringify(editedUser)
     }
 
-    fetch(`http://localhost:4000/users/${this.state.user.id}`, reqMethod)
+    fetch(`http://localhost:3000/users/${this.state.user.id}`, reqMethod)
       .then ((res) => res.json())
       .then((returnUser) => {
         if (returnUser.errors) {
@@ -76,8 +77,8 @@ class App extends Component {
               {...props}
               user={this.state.user}
               handleLogInUser={this.handleLogInUser}
-                />
-            )}
+               />
+                )}
           />
           <Route
           exact
@@ -95,6 +96,24 @@ class App extends Component {
             path="/workouts"
             component={(props) => (
               <WorkoutContainer
+                {...props}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/bookmarked"
+            component={(props) => (
+              <Bookmarked
+                {...props}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/sessionhistory"
+            component={(props) => (
+              <SessionHistroy
                 {...props}
               />
             )}

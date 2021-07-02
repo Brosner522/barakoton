@@ -9,18 +9,6 @@ class UsersController < ApplicationController
         user = User.create(user_params)
         render json: user
     end
-    # def create 
-    #     user = User.new(user_params)
-    #     if user.valid?
-    #         user.save
-    #         token = encode_token({
-    #             user_id: user.id 
-    #         })
-    #         render json: {user: user, token: token}, status: :created
-    #     else 
-    #         render json: {error: user.errors.full_messages}, status: 400
-    #     end
-    # end
 
     def update
         user = User.find_by(id: params[:id])
@@ -51,12 +39,28 @@ class UsersController < ApplicationController
             render json: {error: "no user found!"}, status: :not_found 
         end
     end
-    
+
+    def login
+        user = User.find_by(email: params[:email])
+        if user
+            render json: user
+        else
+            # byebug
+            render json: { error: "Invalid email or password" },status: :unauthorized
+        end
+    end
+
+    def me
+        users = User.all
+        render json: users 
+    end
+
+
+
     private
     
     def user_params 
         params.permit(:name, :email, :age, :weight, :password)
     end
-
 
 end

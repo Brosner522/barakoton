@@ -18,21 +18,25 @@ class Navbar extends React.Component {
       vertical
       visible
       width='thin'
-    >
+    ><h1 className="navbar-title">Barakoton</h1>
       <Menu.Item as={Link} to="/homepage">
         <Icon name='home' />
         Home
       </Menu.Item>
       <Menu.Item as={Link} to="/workouts">
-      <Icon name='bookmark' />
+      <Icon name='heartbeat' />
         Workouts
       </Menu.Item>
-      <Menu.Item as='a'>
+      <Menu.Item as={Link} to="/bookmarked">
         <Icon name='bookmark' />
         Bookmarked
       </Menu.Item>
-      <Menu.Item as="button" onClick={this.props.handleLogout}>
-        <Icon name='bookmark' />
+      <Menu.Item as={Link} to="/sessionhistory">
+        <Icon name='history' />
+        Past sessions
+      </Menu.Item>
+      <Menu.Item as={Link} onClick={this.props.handleLogout}>
+        <Icon name='sign-out' />
         Log out
       </Menu.Item>
     </Sidebar>

@@ -9,7 +9,7 @@ export default class HomePage extends Component {
 
     render() {
         return(
-            <div>
+            <div id="homepage">
                 HomePage
                 <User
                 user={this.props.user}

@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar-title {
+  color: white
+}
+
+#signup-login {
+  margin-top: 3em;
+}
+
+.homepage {
+  justify-content: center;
+}
