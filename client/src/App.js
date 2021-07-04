@@ -7,12 +7,16 @@ import HomePage from './components/HomePage';
 import Navbar from './components/Navbar';
 import Bookmarked from './components/Bookmarked';
 import SessionHistroy from './components/SessionHistory';
+import Session from './components/Session'
 
 class App extends Component {
   state = {
-    user: {}
+    user: {
+      id: 39
+    }
   }
 
+  
   handleLogInUser = (loginUserObj) => {
     this.setState({
       user: loginUserObj
@@ -114,6 +118,15 @@ class App extends Component {
             path="/sessionhistory"
             component={(props) => (
               <SessionHistroy
+                {...props}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/session/:videoId"  
+            component={(props) => (
+              <Session
                 {...props}
               />
             )}

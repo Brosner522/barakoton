@@ -43,4 +43,8 @@ ActiveRecord::Schema.define(version: 2021_06_29_183201) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  #bookmarks
+  # user_id
+  # workout_id
+
 end

@@ -14,16 +14,16 @@ u6 = User.create(name: "Mollz fillet", email: "mollz@gmail.com", age: 19, weight
 
 
 puts "Seeding Workouts"
-w1 = Workout.create(video: "https://www.youtube.com/embed/UBMk30rjy0o", time: "20 minutes", difficulty: 8, workout_type: "Full body", coach: "Pamela Reif")
-w2 = Workout.create(video: "https://www.youtube.com/embed/gC_L9qAHVJ8", time: "30 minutes", difficulty: 3, workout_type: "Fat burning", coach: "Body Project")
-w3 = Workout.create(video: "https://www.youtube.com/embed/3eay48JwTPI", time: "7 minutes", difficulty: 4, workout_type: "Lazy girl workout", coach: "Vicky Justiz")
-w4 = Workout.create(video: "https://www.youtube.com/embed/ml6cT4AZdqI", time: "30 minutes", difficulty: 7, workout_type: "HIIT cardio", coach: "Lita Lewis")
-w5 = Workout.create(video: "https://www.youtube.com/embed/tiC0zylTB0w", time: "10 minutes", difficulty: 5, workout_type: "Kettlebell workout", coach: "Body Fit By Amy")
-w6 = Workout.create(video: "https://www.youtube.com/embed/hnrkkvx4d50", time: "30 minutes", difficulty: 2, workout_type: "Yoga flow", coach: "Jessica Richburg")
-w7 = Workout.create(video: "https://www.youtube.com/embed/3p8EBPVZ2Iw", time: "12 minutes", difficulty: 6, workout_type: "6 Pack abs", coach: "Thenx")
-w8 = Workout.create(video: "https://www.youtube.com/embed/L_xrDAtykMI", time: "15 minutes", difficulty: 1, workout_type: "Strech routine", coach: "Tom Merrick")
-w9 = Workout.create(video: "https://www.youtube.com/embed/U0bhE67HuDY", time: "15 minutes", difficulty: 4, workout_type: "Weight training", coach: "Hasfit")
-w10 = Workout.create(video: "https://www.youtube.com/embed/JeYP5sySvJs", time: "45 minutes", difficulty: 9, workout_type: "Carido and toning", coach: "Kit Rich")
+w1 = Workout.create(video: "UBMk30rjy0o", time: "20 minutes", difficulty: 8, workout_type: "Full body", coach: "Pamela Reif")
+w2 = Workout.create(video: "gC_L9qAHVJ8", time: "30 minutes", difficulty: 3, workout_type: "Fat burning", coach: "Body Project")
+w3 = Workout.create(video: "3eay48JwTPI", time: "7 minutes", difficulty: 4, workout_type: "Lazy girl workout", coach: "Vicky Justiz")
+w4 = Workout.create(video: "ml6cT4AZdqI", time: "30 minutes", difficulty: 7, workout_type: "HIIT cardio", coach: "Lita Lewis")
+w5 = Workout.create(video: "tiC0zylTB0w", time: "10 minutes", difficulty: 5, workout_type: "Kettlebell workout", coach: "Body Fit By Amy")
+w6 = Workout.create(video: "hnrkkvx4d50", time: "30 minutes", difficulty: 2, workout_type: "Yoga flow", coach: "Jessica Richburg")
+w7 = Workout.create(video: "3p8EBPVZ2Iw", time: "12 minutes", difficulty: 6, workout_type: "6 Pack abs", coach: "Thenx")
+w8 = Workout.create(video: "L_xrDAtykMI", time: "15 minutes", difficulty: 1, workout_type: "Strech routine", coach: "Tom Merrick")
+w9 = Workout.create(video: "U0bhE67HuDY", time: "15 minutes", difficulty: 4, workout_type: "Weight training", coach: "Hasfit")
+w10 = Workout.create(video: "JeYP5sySvJs", time: "45 minutes", difficulty: 9, workout_type: "Carido and toning", coach: "Kit Rich")
 
 
 puts "Seeding Sessions"
