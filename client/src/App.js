@@ -16,7 +16,7 @@ class App extends Component {
     }
   }
 
-  
+
   handleLogInUser = (loginUserObj) => {
     this.setState({
       user: loginUserObj

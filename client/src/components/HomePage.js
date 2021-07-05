@@ -11,6 +11,7 @@ export default class HomePage extends Component {
         return(
             <div id="homepage">
                 HomePage
+                
                 <User
                 user={this.props.user}
                 /> 
