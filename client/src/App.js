@@ -9,11 +9,13 @@ import Bookmarked from './components/Bookmarked';
 import SessionHistroy from './components/SessionHistory';
 import Session from './components/Session'
 
+
 class App extends Component {
   state = {
-    user: {
-      id: 39
-    }
+    // user: {
+    //   id: 1
+    // }
+    user: []
   }
 
 
@@ -31,19 +33,29 @@ class App extends Component {
     })
   }
 
+  // componentDidMount() {
+  //   fetch(`http://localhost:3000/me`)
+  //     .then((res) => res.json())
+  //     .then((user) => {
+  //       if (user === null) {
+  //         this.props.history.push('/barakoton')
+  //     } else {
+  //       this.props.history.push("/homepage")
+  //       this.setState({
+  //         user: user
+  //       })
+  //     }
+  //   });
+  // }
+
   componentDidMount() {
-    fetch("http://localhost:3000/me")
+    fetch(`http://localhost:3000/users/1`)
       .then((res) => res.json())
       .then((user) => {
-        if (user === null) {
-          this.props.history.push('/barakoton')
-      } else {
-        this.props.history.push("/homepage")
         this.setState({
           user: user
         })
-      }
-    });
+      })
   }
 
   editUser = (editedUser) => {
@@ -100,6 +112,7 @@ class App extends Component {
             path="/workouts"
             component={(props) => (
               <WorkoutContainer
+                user={this.state.user}
                 {...props}
               />
             )}
@@ -128,6 +141,7 @@ class App extends Component {
             component={(props) => (
               <Session
                 {...props}
+                user={this.state.user}
               />
             )}
           />

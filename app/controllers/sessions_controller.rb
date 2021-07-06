@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     private 
 
     def session_params
-        params.permit(:notes)
+        params.require(:session).permit(:notes, :user_id, :workout_id)
     end
 
 end

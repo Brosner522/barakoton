@@ -21,14 +21,14 @@
 //     }
 // }
 import React from "react";
-import YouTube from "react-youtube";
+// import YouTube from "react-youtube";
 import { Link } from "react-router-dom";
 import { Card, Icon, Image, Button } from "semantic-ui-react";
 
 export default class WorkoutContainer extends React.Component {
   state = {
     workouts: [],
-    sortDifficulty: false,
+    sortDifficulty: false
   };
 
   componentDidMount() {
@@ -43,9 +43,15 @@ export default class WorkoutContainer extends React.Component {
 
   sortDifficulty = () => {
     this.setState({
-      sortDifficulty: !this.state.sortDifficulty,
+      sortDifficulty: !this.state.sortDifficulty
     });
   };
+
+  sortCoach = () => {
+    this.setState({
+      sortCoach: !this.state.sortCoach
+    })
+  }
 
   // handleSortWorkouts = () => {
   //   // debugger
@@ -72,6 +78,8 @@ export default class WorkoutContainer extends React.Component {
     let sortedWorkouts = this.state.sortDifficulty
       ? [...this.state.workouts].sort((a, b) => b.difficulty - a.difficulty)
       : this.state.workouts;
+
+    let workoutsSorted = this.state.sortCoach
       // console.log(sortedWorkouts)
       // this.setState({
         //   workouts: beef,
@@ -125,6 +133,7 @@ export default class WorkoutContainer extends React.Component {
         <Button primary onClick={() => this.sortDifficulty()}>
           Sort by difficulty
         </Button>
+        
         <div className="grid">
           {this.handleRenderVideos()}
           {/* <Grid container columns={3}>

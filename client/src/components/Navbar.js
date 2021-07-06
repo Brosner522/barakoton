@@ -33,7 +33,7 @@ class Navbar extends React.Component {
       </Menu.Item>
       <Menu.Item as={Link} to="/sessionhistory">
         <Icon name='history' />
-        Past sessions
+        Session history
       </Menu.Item>
       <Menu.Item as={Link} onClick={this.props.handleLogout}>
         <Icon name='sign-out' />

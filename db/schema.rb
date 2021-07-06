@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_183201) do
     t.integer "age"
     t.integer "weight"
     t.string "password"
+    t.string "sessions"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -42,9 +43,5 @@ ActiveRecord::Schema.define(version: 2021_06_29_183201) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
-  #bookmarks
-  # user_id
-  # workout_id
 
 end
