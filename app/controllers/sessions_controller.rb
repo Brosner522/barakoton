@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     end
 
     def update
+        # byebug 
         session = Session.find_by(id: params[:id])
         if session 
             session.update(session_params)
@@ -28,3 +29,4 @@ class SessionsController < ApplicationController
     end
 
 end
+

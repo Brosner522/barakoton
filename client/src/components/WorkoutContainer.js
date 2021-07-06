@@ -79,7 +79,7 @@ export default class WorkoutContainer extends React.Component {
       ? [...this.state.workouts].sort((a, b) => b.difficulty - a.difficulty)
       : this.state.workouts;
 
-    let workoutsSorted = this.state.sortCoach
+    // let workoutsSorted = this.state.sortCoach
       // console.log(sortedWorkouts)
       // this.setState({
         //   workouts: beef,
@@ -87,15 +87,15 @@ export default class WorkoutContainer extends React.Component {
         return sortedWorkouts.map((workout) => {
           // All the HTML for one workout
           
-      const opts = {
-        height: "350px",
-        width: "100%",
-        playerVars: {
-          // https://developers.google.com/youtube/player_parameters
-          autoplay: 0,
-          controls: 0,
-        },
-      };
+      // const opts = {
+      //   height: "350px",
+      //   width: "100%",
+      //   playerVars: {
+      //     // https://developers.google.com/youtube/player_parameters
+      //     autoplay: 0,
+      //     controls: 0,
+      //   },
+      // };
 
       return (
         <Card as={Link} to={`/session/${workout.id}`} link={true}>

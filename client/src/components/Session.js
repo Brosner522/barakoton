@@ -32,7 +32,7 @@ export default class Session extends React.Component {
     let newSession = {
       user_id: this.props.user.id,
       workout_id: this.state.workout.id,
-      notes: ""
+      notes:this.state.notes
     };
     fetch(`http://localhost:3000/sessions`, {
       method: "POST",
@@ -49,6 +49,28 @@ export default class Session extends React.Component {
       });
   };
   
+  updateSession = () => {
+    const sessionUpdate = {
+      user_id: this.props.user.id,
+      workout_id: this.state.workout.id,
+      notes: this.state.notes
+    } 
+    fetch(`http://localhost:3000/sessions/${this.state.session.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sessionUpdate),
+    })
+      .then((res) => res.json())
+      .then((sessionObj) => {
+        // debugger 
+        this.setState({
+          notes: sessionObj.notes
+          // session: sessionUpdate
+        })
+      })
+  }
 
   handleClick = () => {
     this.setState({
@@ -58,14 +80,9 @@ export default class Session extends React.Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.notes]: e.target.value,
+      notes: e.target.value
     });
   };
-  // handleNotes = () => {
-  //   this.setState({
-  //     notes:
-  //   })
-  // }
 
   // let workoutVideo = this.state.workouts.map((workout) => {
   // })
@@ -102,17 +119,16 @@ export default class Session extends React.Component {
           <form>
             <Input
               onChange={this.handleChange}
-              value={this.state.session.notes}
+              value={this.state.notes}
               type="text"
               name="notes"
               className="input-text"
             />
             <Button
               primary
-              onClick={this.handleClick}
-              type="submit"
-              name="submit"
-              value="Submit"
+              onClick={this.updateSession}
+              type="button"
+              name="button"
               className="button"
             >
               Submit
