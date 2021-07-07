@@ -103,6 +103,7 @@ export default class User extends Component {
               <Button primary onClick={this.handleEditForm}>
                 Edit
               </Button>
+              
             </Card.Content>
           </Card>
         )}

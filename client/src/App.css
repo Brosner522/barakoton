@@ -38,6 +38,7 @@
 .App {
   display: grid;
   grid-template-columns: 160px 1fr;
+  justify-items: center;
 }
 
 .App .ui.sidebar {
@@ -48,5 +49,13 @@
 
 .ui.card {
   width: 100% !important;
-  margin: 0 !important
+  margin: 0 !important;
 }
+
+.sort-btn {
+  display: block !important;
+  margin: 2em auto !important;
+}
+
+
+

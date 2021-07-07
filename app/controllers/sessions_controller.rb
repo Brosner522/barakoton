@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
         render json: session 
     end
 
-    def update
-        # byebug 
+    def update  
         session = Session.find_by(id: params[:id])
         if session 
             session.update(session_params)

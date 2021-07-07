@@ -1,13 +1,11 @@
 import React from "react";
 import YouTube from "react-youtube";
 // import { Link } from "react-router-dom";
-import { Button, Input } from "semantic-ui-react";
+import { Button, TextArea, Form } from "semantic-ui-react";
 
 export default class Session extends React.Component {
   state = {
-    display: false,
     workout: {},
-    session: {},
     notes: ""
   };
 
@@ -27,12 +25,13 @@ export default class Session extends React.Component {
       );
   }
 
-  handleSession = () => {
-    console.log("clicked");
+  handleSession = (e) => {
+   
+    e.preventDefault();
     let newSession = {
       user_id: this.props.user.id,
       workout_id: this.state.workout.id,
-      notes:this.state.notes
+      notes: this.state.notes,
     };
     fetch(`http://localhost:3000/sessions`, {
       method: "POST",
@@ -43,44 +42,17 @@ export default class Session extends React.Component {
     })
       .then((res) => res.json())
       .then((newSession) => {
+        alert("New session created")
         this.setState({
-          session: newSession,
+          notes: ''
         });
+        this.props.handleSessions(newSession)
       });
-  };
-  
-  updateSession = () => {
-    const sessionUpdate = {
-      user_id: this.props.user.id,
-      workout_id: this.state.workout.id,
-      notes: this.state.notes
-    } 
-    fetch(`http://localhost:3000/sessions/${this.state.session.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(sessionUpdate),
-    })
-      .then((res) => res.json())
-      .then((sessionObj) => {
-        // debugger 
-        this.setState({
-          notes: sessionObj.notes
-          // session: sessionUpdate
-        })
-      })
-  }
-
-  handleClick = () => {
-    this.setState({
-      display: !this.state.display,
-    });
   };
 
   handleChange = (e) => {
     this.setState({
-      notes: e.target.value
+      notes: e.target.value,
     });
   };
 
@@ -106,40 +78,31 @@ export default class Session extends React.Component {
         // })
       },
     };
-
+    
     return (
       <div>
-        <Button primary onClick={() => this.handleSession()}>
-          Add to session history
-        </Button>
-        <Button primary onClick={this.handleClick}>
-          Add notes
-        </Button>
-        {this.state.display ? (
-          <form>
-            <Input
-              onChange={this.handleChange}
-              value={this.state.notes}
-              type="text"
-              name="notes"
-              className="input-text"
-            />
-            <Button
-              primary
-              onClick={this.updateSession}
-              type="button"
-              name="button"
-              className="button"
-            >
-              Submit
-            </Button>
-          </form>
-        ) : null}
         <YouTube
           videoId={this.state.workout.video}
           opts={opts}
           onReady={this._onReady}
         />
+        {/* <Button primary onClick={() => this.handleSession()}>
+          Add to sessions
+        </Button> */}
+
+        <Form onSubmit={(e) => this.handleSession(e)}>
+          <TextArea
+            onChange={this.handleChange}
+            value={this.state.notes}
+            name="notes"
+            placeholder="Enter your notes (required)"
+            required
+            className="input-text"
+          />
+          <Button primary type="submit" name="button" className="button">
+            Submit
+          </Button>
+        </Form>
       </div>
     );
   }

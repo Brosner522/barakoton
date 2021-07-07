@@ -15,9 +15,35 @@ class App extends Component {
     // user: {
     //   id: 1
     // }
-    user: []
+    user: [],
+    sessions: [],
+    bookmarks: []
   }
 
+  handleAddBookmark = (workoutId) => {
+    const newBookmark = {
+      user_id: this.state.user.id,
+      workout_id: workoutId
+    }
+
+    fetch(`http://localhost:3000/bookmarked`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBookmark),
+    })
+    .then((res) => res.json())
+    .then ((newBookmark) => {
+     this.setState({
+       bookmarks: [...this.state.bookmarks, newBookmark]
+     })
+    })
+  }
+
+  handleRemoveBookmark = () => {
+
+  }
 
   handleLogInUser = (loginUserObj) => {
     this.setState({
@@ -31,6 +57,12 @@ class App extends Component {
     this.setState({
       user: {}
     })
+  }
+
+  handleSessions = (newSession) => {
+    this.setState({
+      sessions: [...this.state.sessions, newSession]
+    });
   }
 
   // componentDidMount() {
@@ -112,8 +144,9 @@ class App extends Component {
             path="/workouts"
             component={(props) => (
               <WorkoutContainer
-                user={this.state.user}
-                {...props}
+              {...props}
+              user={this.state.user}
+              bookmarks={this.state.bookmarks}
               />
             )}
           />
@@ -123,6 +156,7 @@ class App extends Component {
             component={(props) => (
               <Bookmarked
                 {...props}
+                bookmarks={this.state.bookmarks}
               />
             )}
           />
@@ -131,6 +165,8 @@ class App extends Component {
             path="/sessionhistory"
             component={(props) => (
               <SessionHistroy
+              user={this.state.user}
+              sessions={this.state.sessions}
                 {...props}
               />
             )}
@@ -142,6 +178,8 @@ class App extends Component {
               <Session
                 {...props}
                 user={this.state.user}
+                handleSessions={this.handleSessions}
+                handleAddBookmark={this.handleAddBookmark}
               />
             )}
           />

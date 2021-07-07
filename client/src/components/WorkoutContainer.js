@@ -28,7 +28,7 @@ import { Card, Icon, Image, Button } from "semantic-ui-react";
 export default class WorkoutContainer extends React.Component {
   state = {
     workouts: [],
-    sortDifficulty: false
+    sortDifficulty: false,
   };
 
   componentDidMount() {
@@ -43,15 +43,15 @@ export default class WorkoutContainer extends React.Component {
 
   sortDifficulty = () => {
     this.setState({
-      sortDifficulty: !this.state.sortDifficulty
+      sortDifficulty: !this.state.sortDifficulty,
     });
   };
 
   sortCoach = () => {
     this.setState({
-      sortCoach: !this.state.sortCoach
-    })
-  }
+      sortCoach: !this.state.sortCoach,
+    });
+  };
 
   // handleSortWorkouts = () => {
   //   // debugger
@@ -80,13 +80,13 @@ export default class WorkoutContainer extends React.Component {
       : this.state.workouts;
 
     // let workoutsSorted = this.state.sortCoach
-      // console.log(sortedWorkouts)
-      // this.setState({
-        //   workouts: beef,
-        // });
-        return sortedWorkouts.map((workout) => {
-          // All the HTML for one workout
-          
+    // console.log(sortedWorkouts)
+    // this.setState({
+    //   workouts: beef,
+    // });
+    return sortedWorkouts.map((workout) => {
+      // All the HTML for one workout
+
       // const opts = {
       //   height: "350px",
       //   width: "100%",
@@ -98,7 +98,12 @@ export default class WorkoutContainer extends React.Component {
       // };
 
       return (
-        <Card as={Link} to={`/session/${workout.id}`} link={true}>
+        <Card
+          key={workout.id}
+          as={Link}
+          to={`/session/${workout.id}`}
+          link={true}
+        >
           <Image
             src={`https://img.youtube.com/vi/${workout.video}/0.jpg`}
             wrapped
@@ -118,7 +123,10 @@ export default class WorkoutContainer extends React.Component {
               <Icon name="chart line" />
               {workout.difficulty}
               <br></br>
-              Bookmark workout <Icon className="bookmark" name="plus" />
+              Bookmark workout
+              <Button icon onClick={() => this.props.handleAddBookmark(workout.id)}>
+                <Icon className="bookmark" name="plus" />
+              </Button>
             </p>
           </Card.Content>
         </Card>
@@ -130,10 +138,14 @@ export default class WorkoutContainer extends React.Component {
     // const beef = this.state.sortDifficulty ? this.state.workouts : this.state.workouts.sort((a, b) => b.difficulty - a.difficulty);
     return (
       <div className="sorting">
-        <Button primary onClick={() => this.sortDifficulty()}>
+        <Button
+          className="sort-btn"
+          primary
+          onClick={() => this.sortDifficulty()}
+        >
           Sort by difficulty
         </Button>
-        
+
         <div className="grid">
           {this.handleRenderVideos()}
           {/* <Grid container columns={3}>
