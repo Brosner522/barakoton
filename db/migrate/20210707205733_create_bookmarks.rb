@@ -1,6 +1,6 @@
-class CreateBookmarkeds < ActiveRecord::Migration[6.1]
+class CreateBookmarks < ActiveRecord::Migration[6.1]
   def change
-    create_table :bookmarkeds do |t|
+    create_table :bookmarks do |t|
       t.integer :user_id
       t.integer :workout_id
 

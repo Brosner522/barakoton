@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :bookmarkeds, only: [:index, :destroy, :create]
+  resources :bookmarks, only: [:index, :destroy, :create]
   post "/login", to: "users#login";
   resources :workouts, only: [:index, :show];
   resources :sessions, only: [:index, :create, :update];

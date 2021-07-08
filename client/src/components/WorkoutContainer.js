@@ -47,11 +47,6 @@ export default class WorkoutContainer extends React.Component {
     });
   };
 
-  sortCoach = () => {
-    this.setState({
-      sortCoach: !this.state.sortCoach,
-    });
-  };
 
   // handleSortWorkouts = () => {
   //   // debugger

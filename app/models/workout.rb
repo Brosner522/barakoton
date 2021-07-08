@@ -2,5 +2,5 @@ class Workout < ApplicationRecord
 
     has_many :sessions
     has_many :users, through: :sessions
-    has_many :bookmarked
+    has_many :bookmarks
 end

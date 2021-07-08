@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_07_07_205733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bookmarkeds", force: :cascade do |t|
+  create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "workout_id"
     t.datetime "created_at", precision: 6, null: false
