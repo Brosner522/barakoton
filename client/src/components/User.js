@@ -4,11 +4,11 @@ import { Card } from "semantic-ui-react";
 
 export default class User extends Component {
   state = {
-    name: this.props.user.name,
-    email: this.props.user.email,
-    age: this.props.user.age,
-    weight: this.props.user.weight,
-    password: this.props.user.password,
+    name: this.props.currentUser.user.name,
+    email: this.props.currentUser.user.email,
+    age: this.props.currentUser.user.age,
+    weight: this.props.currentUser.user.weight,
+    password: this.props.currentUser.user.password,
     display: false,
   };
 
@@ -38,6 +38,7 @@ export default class User extends Component {
   };
 
   render() {
+    console.log(this.props)
     return (
       <div className="user-info">
         {this.state.display ? (

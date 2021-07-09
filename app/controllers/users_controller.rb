@@ -7,7 +7,12 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(user_params)
-        render json: user
+        if user.valid?
+            token = encode_token(user_id: user.id)
+            render json: { user: user, jwt: token }, status: :created
+        else
+            render json: { message: user.errors.full_messages }, status: :bad_request 
+        end
     end
 
     def update
@@ -42,13 +47,14 @@ class UsersController < ApplicationController
 
     def login
         user = User.find_by(email: params[:email])
-        if user
-            render json: user
+        if user && user.authenticate(params[:password])
+            token = encode_token(user_id: user.id)
+            render json: { user: user, jwt: token }
         else
-            # byebug
             render json: { error: "Invalid email or password" },status: :unauthorized
         end
     end
+
 
     def me
         users = User.all

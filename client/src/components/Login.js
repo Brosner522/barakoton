@@ -16,26 +16,29 @@ export default class Login extends Component {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(this.state.email, this.state.password),
+        body: JSON.stringify({
+          email: this.state.email, 
+          password: this.state.password
+        }),
       })
       .then((res) => res.json())
-      .then ((res) => {
-        if (res.error) {
-          alert(res.error);
+      .then ((user) => {
+        if (user.error) {
+          alert(user.error);
           window.location.href = "http://localhost:4000/barakoton";
         } else {
-          // debugger
-          this.props.user(res);
           alert("Welcome back")
-          this.setState({
-            email: "",
-            password: ""
-          });
-          this.props.history.push("/homepage")
+          this.props.loginUser(user)
         }
       })
     }
 
+
+    handleChange = (e) => {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
 
     render() {
     return (
@@ -47,27 +50,20 @@ export default class Login extends Component {
             <Input
                 type="text"
                 placeholder="Enter your email"
-                email="email"
+                name="email"
                 value={this.state.email}
-                onChange={(e) =>
-                  this.setState({
-                    email: e.target.value,
-                  })
-                }
+                onChange={this.handleChange}
               />{" "}
             </p>{" "}
             <p className="login-input">
               <Input
                 // type="password"
                 type="text"
+                name="password"
                 placeholder="Choose a password"
                 password="password"
                 value={this.state.password}
-                onChange={(e) =>
-                  this.setState({
-                    password: e.target.value,
-                  })
-                }
+                onChange={this.handleChange}
               />{" "}
             </p>{" "}
           </label>{" "}
@@ -76,7 +72,11 @@ export default class Login extends Component {
           </p>{" "}
         </form>{" "}
 
-          <Signup />
+          <Signup
+            
+            handleSignup={this.props.handleSignup}
+            
+          />
       </div>
     );
   }

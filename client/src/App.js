@@ -10,26 +10,25 @@ import SessionHistroy from './components/SessionHistory';
 import Session from './components/Session'
 
 
+
 class App extends Component {
   state = {
-    // user: {
-    //   id: 1
-    // }
-    user: [],
+    // user: {},
+    currentUser: {},
     sessions: [],
     bookmarks: []
   }
 
   handleAddBookmark = (workoutId) => {
     const newBookmark = {
-      user_id: this.state.user.id,
       workout_id: workoutId
     }
 
-    fetch(`http://localhost:3000/bookmarked`, {
+    fetch(`http://localhost:3000/bookmarks/toggle`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.state.currentUser.jwt}`
       },
       body: JSON.stringify(newBookmark),
     })
@@ -45,17 +44,13 @@ class App extends Component {
 
   }
 
-  handleLogInUser = (loginUserObj) => {
-    this.setState({
-      user: loginUserObj
-    });
-  };
+  
 
   handleLogout = () => {
     console.log('logging out...')
     this.props.history.push('/barakoton')
     this.setState({
-      user: {}
+      currentUser: {}
     })
   }
 
@@ -64,6 +59,8 @@ class App extends Component {
       sessions: [...this.state.sessions, newSession]
     });
   }
+
+  
 
   // componentDidMount() {
   //   fetch(`http://localhost:3000/me`)
@@ -80,15 +77,15 @@ class App extends Component {
   //   });
   // }
 
-  componentDidMount() {
-    fetch(`http://localhost:3000/users/1`)
-      .then((res) => res.json())
-      .then((user) => {
-        this.setState({
-          user: user
-        })
-      })
-  }
+  // componentDidMount() {
+  //   fetch(`http://localhost:3000/users/1`)
+  //     .then((res) => res.json())
+  //     .then((user) => {
+  //       this.setState({
+  //         currentUser: user
+  //       })
+  //     })
+  // }
 
   editUser = (editedUser) => {
     const reqMethod = {
@@ -97,18 +94,35 @@ class App extends Component {
       body: JSON.stringify(editedUser)
     }
 
-    fetch(`http://localhost:3000/users/${this.state.user.id}`, reqMethod)
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, reqMethod)
       .then ((res) => res.json())
       .then((returnUser) => {
         if (returnUser.errors) {
           alert(returnUser.errors.join("/n"))
         } else {
         this.setState({
-          user: editedUser
+          currentUser: editedUser
         })
       }
     })
   }
+
+
+  handleSignup = (currentUser) => {
+    this.setState({
+      currentUser: currentUser
+    }, () => {
+      this.props.history.push("/homepage")
+    })
+  }
+
+  loginUser = (currentUser) => {
+    this.setState({
+      currentUser: currentUser
+    }, () => {
+      this.props.history.push("/homepage")
+    })
+  };
 
   render() {
     return (
@@ -123,8 +137,9 @@ class App extends Component {
             component={(props) => (
               <Login
               {...props}
-              user={this.state.user}
-              handleLogInUser={this.handleLogInUser}
+              user={this.state.currentUser}
+              handleSignup={this.handleSignup}
+              loginUser={this.loginUser}
                />
                 )}
           />
@@ -134,7 +149,7 @@ class App extends Component {
           component={(props) => (
             <HomePage 
             {...props}
-            user={this.state.user}
+            currentUser={this.state.currentUser}
             editUser={this.editUser}
             />
           )} 
@@ -145,8 +160,9 @@ class App extends Component {
             component={(props) => (
               <WorkoutContainer
               {...props}
-              user={this.state.user}
+              user={this.state.currentUser}
               bookmarks={this.state.bookmarks}
+              handleAddBookmark={this.handleAddBookmark}
               />
             )}
           />
@@ -165,7 +181,7 @@ class App extends Component {
             path="/sessionhistory"
             component={(props) => (
               <SessionHistroy
-              user={this.state.user}
+              user={this.state.currentUser}
               sessions={this.state.sessions}
                 {...props}
               />
@@ -177,7 +193,7 @@ class App extends Component {
             component={(props) => (
               <Session
                 {...props}
-                user={this.state.user}
+                user={this.state.currentUser}
                 handleSessions={this.handleSessions}
                 handleAddBookmark={this.handleAddBookmark}
               />

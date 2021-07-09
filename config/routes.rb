@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  
-  resources :bookmarks, only: [:index, :destroy, :create]
+  resources :bookmarks, only: [:index, :destroy] do 
+    collection do 
+      post :toggle
+    end
+  end
   post "/login", to: "users#login";
   resources :workouts, only: [:index, :show];
   resources :sessions, only: [:index, :create, :update];

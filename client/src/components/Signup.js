@@ -10,46 +10,34 @@ export default class Signup extends Component {
     password: "",
   };
 
-  handleSignup = (e) => {
-    e.preventDefualt();
-    let newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      age: this.state.age,
-      weight: this.state.weight,
-      password: this.state.password,
-    };
+  
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  
+  handleSubmit = (e) => {
+    e.preventDefault()
     fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newUser),
-    }).then((res) => {
-      if (res.status === 200) {
-        res.json().then((data) => {
-          console.log(data);
-          const user = data.user;
-          alert("Please log in");
-          this.props.handleAddNewUser({
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            age: user.age,
-            weight: user.weight,
-            password: user.password,
-          });
-        });
-      } else if (res.status === 400) {
-        alert("Please try again");
-      }
-    });
+      body: JSON.stringify(this.state),
+    })
+    .then((res) => res.json())
+    .then(newUser => {
+      this.props.handleSignup(newUser)
+    })
   };
 
+
   render() {
+    const {name, email, age, weight, password } = this.state 
     return (
-      <div id="signup-login" >
-        <form className="signup" onSubmit={(e) => this.handleSignup(e)}>
+      <div id="signup-login">
+        <form className="signup" onSubmit={this.handleSubmit}>
           <label>
             Sign up{" "}
             <p className="login-input">
@@ -57,20 +45,16 @@ export default class Signup extends Component {
                 type="text"
                 placeholder="Enter your name"
                 name="name"
-                value={this.state.name}
-                onChange={(e) =>
-                  this.setState({
-                    name: e.target.value.toLowerCase(),
-                  })
-                }
+                value={name}
+                onChange={this.handleChange}
               />{" "}
             </p>{" "}
             <p className="login-input">
               <Input
                 type="text"
                 placeholder="Enter your email"
-                email="email"
-                value={this.state.email}
+                name="email"
+                value={email}
                 onChange={(e) =>
                   this.setState({
                     email: e.target.value,
@@ -82,26 +66,18 @@ export default class Signup extends Component {
               <Input
                 type="number"
                 placeholder="Enter your age"
-                age="age"
-                value={this.state.age}
-                onChange={(e) =>
-                  this.setState({
-                    age: e.target.value,
-                  })
-                }
+                name="age"
+                value={age}
+                onChange={this.handleChange}
               />{" "}
             </p>{" "}
             <p className="login-input">
               <Input
                 type="number"
                 placeholder="Enter your weight"
-                weight="weight"
-                value={this.state.weight}
-                onChange={(e) =>
-                  this.setState({
-                    weight: e.target.value,
-                  })
-                }
+                name="weight"
+                value={weight}
+                onChange={this.handleChange}
               />{" "}
             </p>{" "}
             <p className="login-input">
@@ -109,13 +85,9 @@ export default class Signup extends Component {
                 // type="password"
                 type="text"
                 placeholder="Choose a password"
-                password="password"
-                value={this.state.password}
-                onChange={(e) =>
-                  this.setState({
-                    password: e.target.value,
-                  })
-                }
+                name="password"
+                value={password}
+                onChange={this.handleChange}
               />{" "}
             </p>{" "}
           </label>{" "}
@@ -124,11 +96,12 @@ export default class Signup extends Component {
               primary
               className="signup-btn"
               type="submit"
-              value="Sign Up"
+              value="Signup"
             >
               Submit
             </Button>
           </p>{" "}
+          {/* <input type="submit" value="signup"/> */}
         </form>{" "}
       </div>
     );

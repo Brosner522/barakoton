@@ -8,12 +8,13 @@ export default class HomePage extends Component {
     
 
     render() {
+        console.log(this.props)
         return(
             <div id="homepage">
                 HomePage
                 
                 <User
-                user={this.props.user}
+                currentUser={this.props.currentUser}
                 /> 
             </div>
         )
