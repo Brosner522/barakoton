@@ -3,20 +3,20 @@ import { Card, Icon, Image} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class SessionHistory extends Component {
-  state = {
-    sessions: this.props.sessions,
-  };
+  // state = {
+  //   sessions: this.props.sessions,
+  // };
   // Send PATCH request to certain user using their ID to update the "sessions" column with a new session object.
 
   // Send get request to see all past sessions of currently logged in user.
   // Set state to display the new sessions (user table) as cards in a grid.
 
   updateSession = () => {
-    // const sessionUpdate = {
-    //   user_id: this.props.user.id,
-    //   workout_id: this.state.workout.id,
-    //   notes: this.state.notes,
-    // };
+    const sessionUpdate = {
+      user_id: this.props.user.id,
+      workout_id: this.state.workout.id,
+      notes: this.state.notes,
+    };
     fetch(`http://localhost:3000/sessions/${this.state.session.id}`, {
       method: "PATCH",
       headers: {
@@ -37,8 +37,13 @@ export default class SessionHistory extends Component {
   // Map over the sessions which are passed here as a prop (array of sessions) for each session render a card with notes and workout info as in workoutsContainer
   // For each session render a card (HOW TO ACCESS DATA THROUGH IDs???)
 
+
+  
+
+
+
   handleRenderSessions = () => {
-    return this.state.sessions.map((session) => {
+    return this.props.sessions.map((session) => {
       return (
         <Card
           key={session.id}
@@ -70,6 +75,14 @@ export default class SessionHistory extends Component {
   };
 
   render() {
+    
+    const sessions = this.props.workouts.filter((workout) => 
+      workout.id === this.props.sessions[0]
+    )
+    console.log(this.props.workouts)
+    console.log(this.props.sessions[0])
+    console.log(sessions)
+  
     return (
       <div>
         <div className="grid">{this.handleRenderSessions()}</div>

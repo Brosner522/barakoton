@@ -4,19 +4,19 @@ import { Card, Icon, Image, Button } from "semantic-ui-react";
 
 export default class WorkoutContainer extends React.Component {
   state = {
-    workouts: [],
+    // workouts: [],
     sortDifficulty: false,
   };
 
-  componentDidMount() {
-    fetch("http://localhost:4000/workouts")
-      .then((res) => res.json())
-      .then((workouts) =>
-        this.setState({
-          workouts: workouts,
-        })
-      );
-  }
+  // componentDidMount() {
+  //   fetch("http://localhost:4000/workouts")
+  //     .then((res) => res.json())
+  //     .then((workouts) =>
+  //       this.setState({
+  //         workouts: workouts,
+  //       })
+  //     );
+  // }
 
   sortDifficulty = () => {
     this.setState({
@@ -30,8 +30,8 @@ export default class WorkoutContainer extends React.Component {
 
   handleRenderVideos = () => {
     let sortedWorkouts = this.state.sortDifficulty
-      ? [...this.state.workouts].sort((a, b) => b.difficulty - a.difficulty)
-      : this.state.workouts;
+      ? [...this.props.workouts].sort((a, b) => b.difficulty - a.difficulty)
+      : this.props.workouts;
 
     return sortedWorkouts.map((workout) => {
       return (

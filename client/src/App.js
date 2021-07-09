@@ -16,7 +16,8 @@ class App extends Component {
     // user: {},
     currentUser: {},
     sessions: [],
-    bookmarks: []
+    bookmarks: [],
+    workouts: []
   }
 
   handleAddBookmark = (workoutId) => {
@@ -38,6 +39,16 @@ class App extends Component {
        bookmarks: [...this.state.bookmarks, newBookmark]
      })
     })
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:4000/workouts")
+      .then((res) => res.json())
+      .then((workouts) =>
+        this.setState({
+          workouts: workouts,
+        })
+      );
   }
 
   handleRemoveBookmark = () => {
@@ -135,6 +146,7 @@ class App extends Component {
               {...props}
               user={this.state.currentUser}
               bookmarks={this.state.bookmarks}
+              workouts={this.state.workouts}
               handleAddBookmark={this.handleAddBookmark}
               />
             )}
@@ -156,6 +168,7 @@ class App extends Component {
               <SessionHistroy
               user={this.state.currentUser}
               sessions={this.state.sessions}
+              workouts={this.state.workouts}
                 {...props}
               />
             )}
