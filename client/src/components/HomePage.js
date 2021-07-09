@@ -11,8 +11,6 @@ export default class HomePage extends Component {
         console.log(this.props)
         return(
             <div id="homepage">
-                HomePage
-                
                 <User
                 currentUser={this.props.currentUser}
                 /> 

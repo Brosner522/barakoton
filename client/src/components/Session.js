@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import YouTube from "react-youtube";
 // import { Link } from "react-router-dom";
 import { Button, TextArea, Form } from "semantic-ui-react";
 
-export default class Session extends React.Component {
+export default class Session extends Component {
   state = {
     workout: {},
     notes: ""
@@ -26,10 +26,9 @@ export default class Session extends React.Component {
   }
 
   handleSession = (e) => {
-   
     e.preventDefault();
     let newSession = {
-      user_id: this.props.user.id,
+      user_id: this.props.currentUser.user.id,
       workout_id: this.state.workout.id,
       notes: this.state.notes,
     };
@@ -86,9 +85,7 @@ export default class Session extends React.Component {
           opts={opts}
           onReady={this._onReady}
         />
-        {/* <Button primary onClick={() => this.handleSession()}>
-          Add to sessions
-        </Button> */}
+    
 
         <Form onSubmit={(e) => this.handleSession(e)}>
           <TextArea
@@ -99,6 +96,7 @@ export default class Session extends React.Component {
             required
             className="input-text"
           />
+          {/* onClick to forward the user to session page and display all sessions  */}
           <Button primary type="submit" name="button" className="button">
             Submit
           </Button>

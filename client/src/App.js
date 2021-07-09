@@ -60,33 +60,6 @@ class App extends Component {
     });
   }
 
-  
-
-  // componentDidMount() {
-  //   fetch(`http://localhost:3000/me`)
-  //     .then((res) => res.json())
-  //     .then((user) => {
-  //       if (user === null) {
-  //         this.props.history.push('/barakoton')
-  //     } else {
-  //       this.props.history.push("/homepage")
-  //       this.setState({
-  //         user: user
-  //       })
-  //     }
-  //   });
-  // }
-
-  // componentDidMount() {
-  //   fetch(`http://localhost:3000/users/1`)
-  //     .then((res) => res.json())
-  //     .then((user) => {
-  //       this.setState({
-  //         currentUser: user
-  //       })
-  //     })
-  // }
-
   editUser = (editedUser) => {
     const reqMethod = {
       method: "PATCH",
@@ -193,7 +166,7 @@ class App extends Component {
             component={(props) => (
               <Session
                 {...props}
-                user={this.state.currentUser}
+                currentUser={this.state.currentUser}
                 handleSessions={this.handleSessions}
                 handleAddBookmark={this.handleAddBookmark}
               />
