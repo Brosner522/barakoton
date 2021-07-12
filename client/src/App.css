@@ -6,8 +6,15 @@
   margin-top: 3em;
 }
 
-.homepage {
+#homepage {
   justify-content: center;
+  margin-top: 3em;
+  width: 50em;
+  text-align: center;
+}
+
+.edit-user {
+  text-align: center;
 }
 
 .grid {

@@ -42,6 +42,7 @@ export default class Session extends Component {
       .then((res) => res.json())
       .then((newSession) => {
         alert("New session created")
+        this.props.history.push("/sessionhistory")
         this.setState({
           notes: ''
         });

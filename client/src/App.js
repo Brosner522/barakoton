@@ -13,7 +13,6 @@ import Session from './components/Session'
 
 class App extends Component {
   state = {
-    // user: {},
     currentUser: {},
     sessions: [],
     bookmarks: [],
@@ -42,7 +41,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:4000/workouts")
+    fetch("http://localhost:3000/workouts")
       .then((res) => res.json())
       .then((workouts) =>
         this.setState({
@@ -54,8 +53,6 @@ class App extends Component {
   handleRemoveBookmark = () => {
 
   }
-
-  
 
   handleLogout = () => {
     console.log('logging out...')
@@ -77,8 +74,7 @@ class App extends Component {
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify(editedUser)
     }
-
-    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, reqMethod)
+    fetch(`http://localhost:3000/users/${this.state.currentUser.user.id}`, reqMethod)
       .then ((res) => res.json())
       .then((returnUser) => {
         if (returnUser.errors) {
@@ -113,6 +109,7 @@ class App extends Component {
     
       <div className="App">
         <Navbar 
+        currentUser={this.state.currentUser}
         handleLogout={this.handleLogout}/>
         <Switch>
         <Route

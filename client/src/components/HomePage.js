@@ -8,11 +8,12 @@ export default class HomePage extends Component {
     
 
     render() {
-        console.log(this.props)
         return(
-            <div id="homepage">
+            <div id="homepage"  >
                 <User
+                {...this.props} 
                 currentUser={this.props.currentUser}
+                editUser={this.props.editUser}
                 /> 
             </div>
         )

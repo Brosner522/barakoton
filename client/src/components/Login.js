@@ -57,8 +57,7 @@ export default class Login extends Component {
             </p>{" "}
             <p className="login-input">
               <Input
-                // type="password"
-                type="text"
+                type="password"
                 name="password"
                 placeholder="Choose a password"
                 password="password"

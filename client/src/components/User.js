@@ -8,7 +8,7 @@ export default class User extends Component {
     email: this.props.currentUser.user.email,
     age: this.props.currentUser.user.age,
     weight: this.props.currentUser.user.weight,
-    password: this.props.currentUser.user.password,
+    password: "",
     display: false,
   };
 
@@ -26,8 +26,10 @@ export default class User extends Component {
 
   handleEdit = (e) => {
     e.preventDefault();
+    console.log(this.state);
+    console.log(this.props);
     let newUser = {
-      user_id: this.state.loggedinUser.id,
+      user_id: this.props.currentUser.user.id,
       name: this.state.name,
       email: this.state.email,
       age: this.state.age,
@@ -38,16 +40,17 @@ export default class User extends Component {
   };
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div className="user-info">
         {this.state.display ? (
-          <form className="edit-user">
+          <form className="edit-user" onSubmit={this.handleEdit}>
             <Input
               onChange={this.handleChange}
               value={this.state.name}
               type="text"
               name="name"
+              placeholder="name"
               className="input-text"
             />
             <br />
@@ -56,14 +59,7 @@ export default class User extends Component {
               value={this.state.email}
               type="text"
               name="email"
-              className="input-text"
-            />
-            <br />
-            <Input
-              onChange={this.handleChange}
-              value={this.state.password}
-              type="text"
-              name="name"
+              placeholder="email"
               className="input-text"
             />
             <br />
@@ -72,6 +68,7 @@ export default class User extends Component {
               value={this.state.age}
               type="text"
               name="age"
+              placeholder="age"
               className="input-text"
             />
             <br />
@@ -80,19 +77,31 @@ export default class User extends Component {
               value={this.state.weight}
               type="text"
               name="weight"
+              placeholder="weight"
               className="input-text"
             />
             <br />
-            <Button
-              primary
-              onClick={this.handleEditForm}
-              type="submit"
-              name="submit"
-              value="Submit"
-              className="button"
-            >
-              Submit
-            </Button>
+            <Input
+              onChange={this.handleChange}
+              required
+              value={this.state.password}
+              type="password"
+              name="password"
+              placeholder="password (required)"
+              className="input-text"
+            />
+            <br />
+            {this.state.email === this.props.currentUser.user.email ? (
+              <Button
+                primary
+                onClick={this.handleEdit}
+                type="submit"
+                name="button"
+                className="button"
+              >
+                Submit
+              </Button>
+            ) : null}
           </form>
         ) : (
           <Card>
@@ -104,7 +113,6 @@ export default class User extends Component {
               <Button primary onClick={this.handleEditForm}>
                 Edit
               </Button>
-              
             </Card.Content>
           </Card>
         )}
