@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default class SessionHistory extends Component {
   state = {
-    sessions: [],
+    sessions: []
   };
   // Send PATCH request to certain user using their ID to update the "sessions" column with a new session object.
 

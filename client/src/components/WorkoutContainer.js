@@ -4,19 +4,9 @@ import { Card, Icon, Image, Button } from "semantic-ui-react";
 
 export default class WorkoutContainer extends React.Component {
   state = {
-    // workouts: [],
     sortDifficulty: false,
+    iconDisplay: false,
   };
-
-  // componentDidMount() {
-  //   fetch("http://localhost:4000/workouts")
-  //     .then((res) => res.json())
-  //     .then((workouts) =>
-  //       this.setState({
-  //         workouts: workouts,
-  //       })
-  //     );
-  // }
 
   sortDifficulty = () => {
     this.setState({
@@ -60,12 +50,11 @@ export default class WorkoutContainer extends React.Component {
               {workout.difficulty}
               <br></br>
               Bookmark workout
-              <Button
-                icon
+              <Icon
+                className="bookmark"
+                name="plus"
                 onClick={() => this.props.handleAddBookmark(workout.id)}
-              >
-                <Icon className="bookmark" name="plus" />
-              </Button>
+              />
             </p>
           </Card.Content>
         </Card>

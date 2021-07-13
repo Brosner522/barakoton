@@ -14,6 +14,7 @@ export default class HomePage extends Component {
                 {...this.props} 
                 currentUser={this.props.currentUser}
                 editUser={this.props.editUser}
+                deleteUser={this.props.deleteUser}
                 /> 
             </div>
         )

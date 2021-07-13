@@ -36,25 +36,33 @@ export default class User extends Component {
       weight: this.state.weight,
       password: this.state.password,
     };
+
     this.props.editUser(newUser);
   };
 
-  deleteUser = () => {
-    fetch(`http://localhost:3000/users/${this.props.currentUser.user.id}`, {
-      method: "DELETE",
-  }, alert("Are you sure you want to delete your account?"))
-    .then(r => r.json())
-    .then (() => {},
-    this.props.history.push("/barakoton"))
+  handleDelete = (e) => {
+    e.preventDefault()
+    this.props.deleteUser()
   }
 
+  // deleteUser = () => { 
+  //   fetch(
+  //     `http://localhost:3000/users/${this.props.currentUser.user.id}`,
+  //     {
+  //       method: "DELETE",
+  //     },
+  //     alert("Are you sure you want to delete your account?")
+  //   )
+  //     .then((r) => r.json())
+  //     .then(() => {this.props.history.push("/barakoton")}) 
+  // };
 
   render() {
-    // console.log(this.props)
+    // console.log(this.props.currentUser.user.name)
     return (
       <div className="user-info">
         {this.state.display ? (
-          <Form className="edit-user" onSubmit={this.handleEdit}>
+          <Form className="edit-user" onSubmit={(e) => this.handleEdit(e)}>
             <Input
               onChange={this.handleChange}
               value={this.state.name}
@@ -94,27 +102,25 @@ export default class User extends Component {
             <Input
               onChange={this.handleChange}
               value={this.state.password}
-              required
               type="password"
               name="password"
               placeholder="password (required)"
+              required
               className="input-text"
             />
             <br />
-            {this.state.email === this.props.currentUser.user.email ? (
-              <Button
-                primary
-                onClick={this.handleEdit}
-                type="submit"
-                name="button"
-                className="button"
-              >
-                Submit
-              </Button>
-            ) : null}
-            <Button primary onClick={this.deleteUser}>
-                Delete
-              </Button>
+            <Button
+              primary
+              onClick={this.handleEdit}
+              type="submit"
+              name="button"
+              className="button"
+            >
+              Submit
+            </Button>
+            <Button primary onClick={this.handleDelete}>
+              Delete
+            </Button>
           </Form>
         ) : (
           <Card>
