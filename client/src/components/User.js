@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Button } from "semantic-ui-react";
+import { Input, Button, Form } from "semantic-ui-react";
 import { Card } from "semantic-ui-react";
 
 export default class User extends Component {
@@ -39,12 +39,22 @@ export default class User extends Component {
     this.props.editUser(newUser);
   };
 
+  deleteUser = () => {
+    fetch(`http://localhost:3000/users/${this.props.currentUser.user.id}`, {
+      method: "DELETE",
+  }, alert("Are you sure you want to delete your account?"))
+    .then(r => r.json())
+    .then (() => {},
+    this.props.history.push("/barakoton"))
+  }
+
+
   render() {
     // console.log(this.props)
     return (
       <div className="user-info">
         {this.state.display ? (
-          <form className="edit-user" onSubmit={this.handleEdit}>
+          <Form className="edit-user" onSubmit={this.handleEdit}>
             <Input
               onChange={this.handleChange}
               value={this.state.name}
@@ -83,8 +93,8 @@ export default class User extends Component {
             <br />
             <Input
               onChange={this.handleChange}
-              required
               value={this.state.password}
+              required
               type="password"
               name="password"
               placeholder="password (required)"
@@ -102,7 +112,10 @@ export default class User extends Component {
                 Submit
               </Button>
             ) : null}
-          </form>
+            <Button primary onClick={this.deleteUser}>
+                Delete
+              </Button>
+          </Form>
         ) : (
           <Card>
             <Card.Content header={this.state.name} />

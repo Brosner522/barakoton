@@ -69,6 +69,7 @@ class App extends Component {
   }
 
   editUser = (editedUser) => {
+    console.log(editedUser)
     const reqMethod = {
       method: "PATCH",
       headers: { "Content-Type": "application/json"},

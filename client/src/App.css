@@ -46,6 +46,9 @@
   display: grid;
   grid-template-columns: 160px 1fr;
   justify-items: center;
+  background: no-repeat url("https://us.123rf.com/450wm/fizkes/fizkes1904/fizkes190400258/120532219-unrolled-yoga-mat-on-wooden-floor-in-modern-fitness-center-or-at-home-with-big-windows-and-white-bri.jpg?ver=6");
+  /* background-size: 100%; */
+  background-size: cover;
 }
 
 .App .ui.sidebar {

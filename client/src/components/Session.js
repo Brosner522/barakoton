@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 import YouTube from "react-youtube";
-// import { Link } from "react-router-dom";
+
 import { Button, TextArea, Form } from "semantic-ui-react";
 
 export default class Session extends Component {
   state = {
     workout: {},
-    notes: ""
+    notes: "",
   };
 
   componentDidMount() {
-    // Take that workout ID in our url and go and fetch that workout
-    // Grab the workout id off the url
     const workoutId = this.props.match.params.videoId;
-    // Take this video id and fetch that particular video from the backend
-    // Fetch here
+
     fetch(`http://localhost:4000/workouts/${workoutId}`)
       .then((res) => res.json())
       .then((workout) =>
         this.setState({
           workout: workout,
-          // session: workout.id
         })
       );
   }
@@ -41,12 +37,12 @@ export default class Session extends Component {
     })
       .then((res) => res.json())
       .then((newSession) => {
-        alert("New session created")
-        this.props.history.push("/sessionhistory")
+        alert("New session created");
+        this.props.history.push("/sessionhistory");
         this.setState({
-          notes: ''
+          notes: "",
         });
-        this.props.handleSessions(newSession)
+        this.props.handleSessions(newSession);
       });
   };
 
@@ -56,37 +52,37 @@ export default class Session extends Component {
     });
   };
 
-  // let workoutVideo = this.state.workouts.map((workout) => {
-  // })
   _onReady(event) {
-    // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
+
+  // playerRef(event) {
+  //   event.target.getCurrentTime()
+  // }
 
   render() {
     const opts = {
       height: "800px",
       width: "1000px",
+      playsinline: 0,
+      modestbranding: 1,
+      rel: 0,
       playerVars: {
-        // https://developers.google.com/youtube/player_parameters
         autoplay: 0,
         controls: 0,
         playsinline: 0,
         modestbranding: 1,
-        // onPlay: this.setState({
-        //   session: this.state.workout
-        // })
       },
     };
-    
+
     return (
       <div>
         <YouTube
           videoId={this.state.workout.video}
           opts={opts}
           onReady={this._onReady}
+          // ref={this.playerRef}
         />
-    
 
         <Form onSubmit={(e) => this.handleSession(e)}>
           <TextArea
@@ -97,7 +93,6 @@ export default class Session extends Component {
             required
             className="input-text"
           />
-          {/* onClick to forward the user to session page and display all sessions  */}
           <Button primary type="submit" name="button" className="button">
             Submit
           </Button>

@@ -44,46 +44,28 @@ export default class SessionHistory extends Component {
       });
   };
 
-  // Map over the sessions which are passed here as a prop (array of sessions) for each session render a card with notes and workout info as in workoutsContainer
-  // For each session render a card (HOW TO ACCESS DATA THROUGH IDs???)
-
-  // handleSessions = () => {
-  //   let sessions = this.state.sessions.filter((session) => {
-  //     return session.user_id === this.props.user.user.id;
-  //   });
-  //   console.log(sessions)
-  // };
-
   handleWorkouts = () => {
-    // find workouts that match workout id of sessions and made data reachable.
     let workouts = this.props.workouts.filter((workout) => {
-      return workout === this.state.sessions.workout_id 
-    })
-    console.log(workouts)
-  }
-
-
+      return workout === this.state.sessions.workout_id;
+    });
+    console.log(workouts);
+  };
 
   handleRenderSessions = () => {
     let sessions = this.state.sessions.filter((session) => {
       return session.user_id === this.props.user.user.id;
-    })
-    // let beef = this.props.workouts.filter((workout) => {
-    //   return workout.id === session.workout_id
-    // }) 
-    // console.log(beef)
-    
+    });
     return sessions.map((session) => {
-      // console.log(session.workout_id)
-      console.log(this.props.workouts.filter((workout) => {
-        return workout.id === session.workout_id
-      }))
+      console.log(
+        this.props.workouts.filter((workout) => {
+          return workout.id === session.workout_id;
+        })
+      );
       let beef = this.props.workouts.filter((workout) => {
-        return workout.id === session.workout_id
-      }) 
-      console.log(beef)
+        return workout.id === session.workout_id;
+      });
+      console.log(beef);
 
-      
       return (
         <Card
           key={beef[0].id}
@@ -98,9 +80,7 @@ export default class SessionHistory extends Component {
           />
           <Card.Content>
             <Card.Header>Your notes: {session.notes}</Card.Header>
-            {/* <Card.Meta>
-              <span>{this.state.workout_id}</span>
-            </Card.Meta> */}
+
             <Card.Description>{beef[0].coach}</Card.Description>
             <Card.Description>{beef[0].time}</Card.Description>
           </Card.Content>
