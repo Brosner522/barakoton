@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button } from 'semantic-ui-react';
+import { Input, Button, Header } from 'semantic-ui-react';
 import Signup from './Signup'
 
 export default class Login extends Component {
@@ -45,7 +45,8 @@ export default class Login extends Component {
       <div id="signup-login" className="forms">
         <form className="login" onSubmit={(e) => this.handleLogin(e)} >
           <label>
-            Log In{" "}
+          <Header textAlign="center" as='h3'>Log In</Header>
+          {" "}
             <p className="login-input">
             <Input
                 type="text"

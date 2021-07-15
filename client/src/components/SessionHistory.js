@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class SessionHistory extends Component {
@@ -98,6 +98,7 @@ export default class SessionHistory extends Component {
   render() {
     return (
       <div>
+        <Header textAlign="center" as='h1'>Session History</Header>
         <div className="grid">{this.handleRenderSessions()}</div>
       </div>
     );

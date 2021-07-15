@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
+import { Card, Icon, Image, Button, Header } from "semantic-ui-react";
 
 export default class WorkoutContainer extends React.Component {
   state = {
@@ -65,6 +65,7 @@ export default class WorkoutContainer extends React.Component {
   render() {
     return (
       <div className="sorting">
+        <Header textAlign="center" as='h1'>Workouts</Header>
         <Button
           className="sort-btn"
           primary
