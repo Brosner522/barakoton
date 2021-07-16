@@ -41,24 +41,11 @@ export default class User extends Component {
   };
 
   handleDelete = (e) => {
-    e.preventDefault()
-    this.props.deleteUser()
-  }
-
-  // deleteUser = () => { 
-  //   fetch(
-  //     `http://localhost:3000/users/${this.props.currentUser.user.id}`,
-  //     {
-  //       method: "DELETE",
-  //     },
-  //     alert("Are you sure you want to delete your account?")
-  //   )
-  //     .then((r) => r.json())
-  //     .then(() => {this.props.history.push("/barakoton")}) 
-  // };
+    e.preventDefault();
+    this.props.deleteUser();
+  };
 
   render() {
-    // console.log(this.props.currentUser.user.name)
     return (
       <div className="user-info">
         {this.state.display ? (

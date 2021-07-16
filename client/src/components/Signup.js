@@ -10,15 +10,14 @@ export default class Signup extends Component {
     password: "",
   };
 
-  
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-  
+      [e.target.name]: e.target.value,
+    });
+  };
+
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
@@ -26,21 +25,21 @@ export default class Signup extends Component {
       },
       body: JSON.stringify(this.state),
     })
-    .then((res) => res.json())
-    .then(newUser => {
-      this.props.handleSignup(newUser)
-    })
+      .then((res) => res.json())
+      .then((newUser) => {
+        this.props.handleSignup(newUser);
+      });
   };
 
-
   render() {
-    const {name, email, age, weight, password } = this.state 
+    const { name, email, age, weight, password } = this.state;
     return (
       <div id="signup-login">
         <form className="signup" onSubmit={this.handleSubmit}>
           <label>
-          <Header textAlign="center" as='h3'>Sign Up</Header>
-          {" "}
+            <Header textAlign="center" as="h3">
+              Sign Up
+            </Header>{" "}
             <p className="login-input">
               <Input
                 type="text"
@@ -83,8 +82,7 @@ export default class Signup extends Component {
             </p>{" "}
             <p className="login-input">
               <Input
-                // type="password"
-                type="text"
+                type="password"
                 placeholder="Choose a password"
                 name="password"
                 value={password}
@@ -93,16 +91,10 @@ export default class Signup extends Component {
             </p>{" "}
           </label>{" "}
           <p className="login-input">
-            <Button
-              primary
-              className="signup-btn"
-              type="submit"
-              value="Signup"
-            >
+            <Button primary className="signup-btn" type="submit" value="Signup">
               Submit
             </Button>
           </p>{" "}
-          {/* <input type="submit" value="signup"/> */}
         </form>{" "}
       </div>
     );

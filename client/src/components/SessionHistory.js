@@ -6,10 +6,7 @@ export default class SessionHistory extends Component {
   state = {
     sessions: []
   };
-  // Send PATCH request to certain user using their ID to update the "sessions" column with a new session object.
 
-  // Send get request to see all past sessions of currently logged in user.
-  // Set state to display the new sessions (user table) as cards in a grid.
 
   componentDidMount = () => {
     fetch("http://localhost:3000/sessions")

@@ -65,7 +65,9 @@ export default class WorkoutContainer extends React.Component {
   render() {
     return (
       <div className="sorting">
-        <Header textAlign="center" as='h1'>Workouts</Header>
+        <Header textAlign="center" as="h1">
+          Workouts
+        </Header>
         <Button
           className="sort-btn"
           primary

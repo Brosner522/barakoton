@@ -56,10 +56,6 @@ export default class Session extends Component {
     event.target.pauseVideo();
   }
 
-  // playerRef(event) {
-  //   event.target.getCurrentTime()
-  // }
-
   render() {
     const opts = {
       height: "800px",
@@ -81,7 +77,6 @@ export default class Session extends Component {
           videoId={this.state.workout.video}
           opts={opts}
           onReady={this._onReady}
-          // ref={this.playerRef}
         />
 
         <Form onSubmit={(e) => this.handleSession(e)}>

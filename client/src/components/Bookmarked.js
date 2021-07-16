@@ -17,23 +17,11 @@ export default class Bookmarked extends Component {
       );
   };
 
-//   handleWorkouts = () => {
-//     let workouts = this.props.workouts.filter((workout) => {
-//       return workout === this.state.sessions.workout_id;
-//     });
-//     console.log(workouts);
-//   };
-
   handleRenderBookmarks = () => {
     let bookmarks = this.state.bookmarks.filter((bookmark) => {
       return bookmark.user_id === this.props.user.user.id;
     });
     return bookmarks.map((bookmark) => {
-      // console.log(
-      //   this.props.workouts.filter((workout) => {
-      //     return workout.id === bookmark.workout_id;
-      //   })
-      // );
       let beef = this.props.workouts.filter((workout) => {
         return workout.id === bookmark.workout_id;
       });
@@ -78,7 +66,9 @@ export default class Bookmarked extends Component {
   render() {
     return (
       <div>
-          <Header textAlign="center" as='h1'>Bookmarked Workouts</Header>
+        <Header textAlign="center" as="h1">
+          Bookmarked Workouts
+        </Header>
         <div className="grid">{this.handleRenderBookmarks()}</div>
       </div>
     );
