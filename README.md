@@ -1,8 +1,6 @@
-Barakoton can be started by running "npm start" from the front end directory and then "rails s" from the backend.
+Barakoton is an at-home fitness application that allows users to view workouts and create sessions after completing a workout.  Users can easily log changes in their weight on the profile page.  To make working out easier for our users they also have the ability to save workouts to a bookmarked page for a later date!
 
-Barakoton is an at-home fitness application that allows users to view workouts and create sessions after completing a workout. Users can easily log changes in their weight on the profile page. To make working out easier for our users they also have the ability to save workouts to a bookmarked page for a later date!
-
-Barakoton was built using third party libraries as well as a Youtube API to render videos and their information 
+Barakoton was built using third party libraries as well as a Youtube API to render dynamic videos and their information. 
 
 In this application a user will be able to:
 - Log in.
@@ -30,6 +28,6 @@ Frontend setup:
 2. Run 'npm install'.
 3. Run 'npm start'.
 
-
 If you have any further question about this application please feel free to reach out to me at rosnerbb@gmail.com
+
 Developer: Barak Rosner
